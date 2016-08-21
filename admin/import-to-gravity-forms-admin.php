@@ -139,15 +139,23 @@ class ImportToGravityForms_Admin {
 	/**
 	 * the cron job
 	 * register_deactivation_hook( __FILE__, 'bl_deactivate' );
-
-	function bl_deactivate() {
-	$timestamp = wp_next_scheduled( 'bl_cron_hook' );
-	wp_unschedule_event($timestamp, 'bl_cron_hook' );
-	}
+	 *
+	 * function bl_deactivate() {
+	 * $timestamp = wp_next_scheduled( 'bl_cron_hook' );
+	 * wp_unschedule_event($timestamp, 'bl_cron_hook' );
+	 * }
 	 */
-	public function bl_cron_exec(){
-		if( !wp_next_scheduled( 'bl_cron_hook' ) ) {
-			wp_schedule_event( time(), '5seconds', 'bl_cron_hook' );
+	public function bl_cron_exec() {
+		if ( $timestamp = wp_next_scheduled( 'bl_cron_hook' ) ) {
+			wp_unschedule_event( $timestamp, 'bl_cron_hook' );
+		}
+		$time_picked = get_option( 'import_to_gravity_forms_setting_db_when', false );
+		$time        = strtotime( $time_picked );
+		if ( $time ) {
+			$interval = intval( get_option( 'import_to_gravity_forms_setting_db_interval' ) );
+			if ( $interval ) {
+				wp_schedule_event( $time, $interval . 'seconds', 'bl_cron_hook' );
+			}
 		}
 	}
 

@@ -30,7 +30,8 @@ class ImportToGravityFormsDeactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-		//unschedule your tasks is upon plugin deactivation
+		$timestamp = wp_next_scheduled( 'bl_cron_hook' );
+		wp_unschedule_event( $timestamp, 'bl_cron_hook' );
 	}
 
 }

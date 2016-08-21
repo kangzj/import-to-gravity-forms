@@ -91,6 +91,7 @@
 							</td>
 						</tr>
 					</table>
+					<input type="hidden" name="old_timestamp">
 				</form>
 			</div> <!-- end post-body-content -->
 		</div> <!-- end post-body -->
