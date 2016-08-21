@@ -86,12 +86,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td colspan="2" align="center">
 								<input type="submit" name="submit">
 							</td>
 						</tr>
 					</table>
-					<input type="hidden" name="old_timestamp">
 				</form>
 			</div> <!-- end post-body-content -->
 		</div> <!-- end post-body -->

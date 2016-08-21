@@ -131,6 +131,7 @@ class ImportToGravityForms_Admin {
 		$mydb     = new wpdb( $username, $password, $database, $host );
 		$results  = $mydb->get_results( "select 1" );
 		// do the import work here
+		file_put_contents( 'd:/test.log', print_r( $results ) );
 
 	}
 
