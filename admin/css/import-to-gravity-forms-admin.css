@@ -2,3 +2,7 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.import_to_gfs_dbtable {
+    width: 100%
+}

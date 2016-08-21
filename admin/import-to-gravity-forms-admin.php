@@ -64,7 +64,7 @@ class ImportToGravityForms_Admin {
 			'dbname',
 			'user',
 			'pass',
-			'table'
+			'sql'
 		);
 
 	}
