@@ -18,7 +18,7 @@
  *
  * @package    ImportToGravityForms
  * @subpackage ImportToGravityForms/admin
- * @author     Your Name <email@example.com>
+ * @author     Jasper Kang <kangzjnet@gmail.com>
  */
 class ImportToGravityForms_Admin {
 
