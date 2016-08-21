@@ -35,7 +35,7 @@ class ImportToGravityForms {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      ImportToGravityFormsLoader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      ImportToGravityFormsLoader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,7 +44,7 @@ class ImportToGravityForms {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -53,7 +53,7 @@ class ImportToGravityForms {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -69,7 +69,7 @@ class ImportToGravityForms {
 	public function __construct() {
 
 		$this->plugin_name = 'ImportToGravityForms';
-		$this->version = '1.0.0';
+		$this->version     = '1.0.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -155,6 +155,7 @@ class ImportToGravityForms {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'import_to_gravity_forms_admin_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'setting_api_init' );
+		$this->loader->add_action( 'bl_cron_hook', $plugin_admin, 'bl_cron_exec' );
 
 	}
 

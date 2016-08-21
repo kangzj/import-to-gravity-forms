@@ -75,7 +75,35 @@
 			</div> <!-- end post-body-content -->
 		</div> <!-- end post-body -->
 	</div> <!-- end poststuff -->
+
 	<div id="run_imports">
-		
+		<form method="post" action="options.php">
+			<?php settings_fields( 'import_to_gravity_forms_setting' ); ?>
+			<table class="import_to_gfs_dbtable">
+				<tr valign="top">
+					<th scope="row"><?php _e( 'When to Fire:', 'import_to_gravity_forms' ); ?></th>
+					<td width="70%">
+						<input name="import_to_gravity_forms_setting_when"
+						       value="<?= get_option( 'import_to_gravity_forms_setting_when' ); ?>"
+						       onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/><br/>
+						<label class="description"
+						       for="import_to_gravity_forms_setting_when"><?php _e( 'when to fire the cron task, example: 2016-08-21 11:00:00', 'import_to_gravity_forms' ); ?></label>
+					</td>
+				<tr>
+					<th scope="row"><?php _e( 'Interval:', 'import_to_gravity_forms' ); ?></th>
+					<td width="70%">
+						<input name="import_to_gravity_forms_setting_interval"
+						       value="<?= get_option( 'import_to_gravity_forms_setting_interval' ); ?>"/><br/>
+						<label class="description"
+						       for="import_to_gravity_forms_setting_interval"><?php _e( 'in seconds, when set to 0, it will be fired only once', 'import_to_gravity_forms' ); ?></label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" name="submit">
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </div>

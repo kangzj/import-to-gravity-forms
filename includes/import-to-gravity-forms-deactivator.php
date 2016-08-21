@@ -30,7 +30,7 @@ class ImportToGravityFormsDeactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		//unschedule your tasks is upon plugin deactivation
 	}
 
 }

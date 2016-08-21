@@ -64,7 +64,9 @@ class ImportToGravityForms_Admin {
 			'dbname',
 			'user',
 			'pass',
-			'sql'
+			'sql',
+			'when',
+			'interval'
 		);
 
 	}
@@ -112,6 +114,7 @@ class ImportToGravityForms_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-to-gravity-forms-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '_laydate', plugin_dir_url( __FILE__ ) . 'js/laydate/laydate.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -131,6 +134,21 @@ class ImportToGravityForms_Admin {
 			'import_to_gravity_forms_setting',
 			'import_to_gravity_forms_setting_page'
 		);
+	}
+
+	/**
+	 * the cron job
+	 * register_deactivation_hook( __FILE__, 'bl_deactivate' );
+
+	function bl_deactivate() {
+	$timestamp = wp_next_scheduled( 'bl_cron_hook' );
+	wp_unschedule_event($timestamp, 'bl_cron_hook' );
+	}
+	 */
+	public function bl_cron_exec(){
+		if( !wp_next_scheduled( 'bl_cron_hook' ) ) {
+			wp_schedule_event( time(), '5seconds', 'bl_cron_hook' );
+		}
 	}
 
 

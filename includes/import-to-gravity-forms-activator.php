@@ -30,8 +30,6 @@ class ImportToGravityFormsActivator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-//		add_settings_field('import-to_gravity-forms-host', 'Host', function(){echo 'test1';}, 'general');
-//		add_settings_field('import-to_gravity-forms-port', 'Port', function(){echo 'test2';}, 'general');
 	}
 
 }
