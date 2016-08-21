@@ -78,18 +78,6 @@ class ImportToGravityForms_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Plugin_Name_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Plugin_Name_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/import-to-gravity-forms-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -100,18 +88,6 @@ class ImportToGravityForms_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Plugin_Name_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Plugin_Name_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-to-gravity-forms-admin.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name . '_laydate', plugin_dir_url( __FILE__ ) . 'js/laydate/laydate.js', array( 'jquery' ), $this->version, false );
@@ -146,6 +122,30 @@ class ImportToGravityForms_Admin {
 	 * }
 	 */
 	public function bl_cron_exec() {
+		global $mydb;
+		$username = get_option( 'import_to_gravity_forms_setting_db_user' );
+		$password = get_option( 'import_to_gravity_forms_setting_db_pass' );
+		$database = get_option( 'import_to_gravity_forms_setting_db_dbname' );
+		$host     = get_option( 'import_to_gravity_forms_setting_db_host' ) . ':'
+		            . get_option( 'import_to_gravity_forms_setting_db_port' );
+		$mydb     = new wpdb( $username, $password, $database, $host );
+		$results  = $mydb->get_results( "select 1" );
+		// do the import work here
+
+	}
+
+
+}
+
+/**
+ * options page callback
+ * which will set the cron task as well
+ */
+function import_to_gravity_forms_setting_page() {
+	if ( ! isset( $_REQUEST['settings-updated'] ) ) {
+		$_REQUEST['settings-updated'] = false;
+	}
+	if ( $_REQUEST['settings-updated'] ) {
 		if ( $timestamp = wp_next_scheduled( 'bl_cron_hook' ) ) {
 			wp_unschedule_event( $timestamp, 'bl_cron_hook' );
 		}
@@ -159,12 +159,5 @@ class ImportToGravityForms_Admin {
 		}
 	}
 
-
-}
-
-function import_to_gravity_forms_setting_page() {
-	if ( ! isset( $_REQUEST['settings-updated'] ) ) {
-		$_REQUEST['settings-updated'] = false;
-	}
 	include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/import-to-gravity-forms-admin-display.php';
 }
