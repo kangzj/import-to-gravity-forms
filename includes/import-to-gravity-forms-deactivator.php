@@ -16,9 +16,9 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    ImportToGravityForms
+ * @subpackage ImportToGravityForms/includes
+ * @author     Jasper Kang <kangzjnet@gmail.com>
  */
 class ImportToGravityFormsDeactivator {
 

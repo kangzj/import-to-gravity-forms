@@ -17,9 +17,10 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @since      1.0.0
+ * @package    ImportToGravityForms
+ * @subpackage ImportToGravityForms/includes
+ * @author     Jasper Kang <kangzjnet@gmail.com>
  */
 class ImportToGravityForms_Loader {
 
